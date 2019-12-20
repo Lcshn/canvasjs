@@ -1,3 +1,13 @@
+var optimizeForHiDPI = true;
+//optimizeForHiDPI = false;
+var devicePixelRatio = window.devicePixelRatio || 1;
+var backingStoreRatio = 1;
+
+export function getDevicePixelBackingStoreRatio() {
+  return optimizeForHiDPI ? devicePixelRatio / backingStoreRatio : 1;
+}
+
+var devicePixelBackingStoreRatio = getDevicePixelBackingStoreRatio();
 
 function yScaleAnimation(fractionComplete, animationInfo) {
 

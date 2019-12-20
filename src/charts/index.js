@@ -41,4 +41,3 @@ export {
   StepAreaChart,
 	PieChart
 }
-

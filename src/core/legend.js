@@ -3,7 +3,7 @@ import DataSeries from './data_series';
 import CanvasJSObject from './canvasjs';
 import TextBlock from './text_block';
 import RenderHelper from '../helpers/render';
-import { extend, getFontHeightInPixels, intToHexColorString} from '../helpers/utils';
+import {extend, getFontHeightInPixels,intToHexColorString} from '../helpers/utils';
 
 function Legend(chart, options, theme) {
   Legend.base.constructor.call(this, "Legend", options, theme);
@@ -77,7 +77,7 @@ Legend.prototype.render = function () {
       var legendText = dataSeries.legendText ? dataSeries.legendText : this.itemTextFormatter ? this.itemTextFormatter({ chart: this.chart, legend: this._options, dataSeries: dataSeries, dataPoint: null })
         : dataSeries.name;
       var markerColor = dataSeries.legendMarkerColor ? dataSeries.legendMarkerColor : dataSeries.markerColor ? dataSeries.markerColor : dataSeries._colorSet[0];
-      var markerSize = (!dataSeries.markerSize && (dataSeries.type === "line" || dataSeries.type === "stepLine" || dataSeries.type === "spline")) ? 0 : this.lineHeight * .6;
+      var markerSize = (!dataSeries.markerSize && (dataSeries.type === "line" || dataSeries.type === "stepLine" || dataSeries.type === "spline")) ? 0 : this.lineHeight * .7;
       var markerBorderColor = dataSeries.legendMarkerBorderColor ? dataSeries.legendMarkerBorderColor : dataSeries.markerBorderColor;
       var markerBorderThickness = dataSeries.legendMarkerBorderThickness ? dataSeries.legendMarkerBorderThickness : dataSeries.markerBorderThickness ? Math.max(1, Math.round(markerSize * .2)) : 0;
       var lineColor = dataSeries._colorSet[0];
@@ -141,7 +141,7 @@ Legend.prototype.render = function () {
       }
     }
 
-    markerSize = (markerSize === 0 ? this.lineHeight * .6 : markerSize);
+    markerSize = (markerSize === 0 ? this.lineHeight * .8 : markerSize);
     textMaxWidth = textMaxWidth - (markerSize + this.horizontalSpacing * .1);
 
     for (var i = 0; i < items.length; i++) {
@@ -166,7 +166,7 @@ Legend.prototype.render = function () {
           text: item.text,
           horizontalAlign: "left",//left, center, right
           fontSize: this.fontSize,//in pixels
-          fontFamily: 'Arial',
+          fontFamily: this.fontFamily,
           fontWeight: this.fontWeight, //normal, bold, bolder, lighter,
           fontColor: this.fontColor,
           fontStyle: this.fontStyle, // normal, italic, oblique
@@ -370,10 +370,7 @@ Legend.prototype.render = function () {
   container.layoutManager.registerSpace(position, { width: this.width + 2 + 2, height: this.height + 5 + 5 });
 
   this.bounds = {
-		x1: left,
-		y1: top,
-		x2: left + this.width,
-		y2: top + this.height
+    x1: left, y1: top, x2: left + this.width, y2: top + this.height
   };
 }
 

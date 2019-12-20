@@ -1,6 +1,6 @@
 
 import CanvasJSObject from './canvasjs';
-import {extend, getFontHeightInPixels, trimString, getFontString} from '../helpers/utils';
+import {extend, getFontHeightInPixels, trimString, getFontString, extendCtx} from '../helpers/utils';
 
 function TextBlock(ctx, options) {
 
@@ -37,11 +37,12 @@ TextBlock.prototype.render = function (preserveContext) {
   this.ctx.rotate(Math.PI / 180 * this.angle);
 
   var textLeft = 0;
-  var textTop = this.padding;
+  var textTop = 2;
   //var textTop = this.padding;
   var line = null;
 
   if ((this.borderThickness > 0 && this.borderColor) || this.backgroundColor) {
+    extendCtx(this.ctx)
     this.ctx.roundRect(0, offsetY, this.width, this.height, this.cornerRadius, this.borderThickness, this.backgroundColor, this.borderColor);
 
     //if (this.textBaseline === "middle") {
@@ -184,7 +185,7 @@ TextBlock.prototype._wrapText = function wrapText() {
   this.width = width + this.padding * 2;
   this.height = height + this.padding * 2;
 
-	this.ctx.font = font; // Restore the font
+  this.ctx.font = font; // Restore the font
 }
 
 TextBlock.prototype._getFontString = function () {

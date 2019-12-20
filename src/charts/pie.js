@@ -7,10 +7,6 @@ export default function (plotUnit) {
 	var _this = this;
 	var totalDataSeries = plotUnit.dataSeriesIndexes.length;
 
-
-	var indexLabelRadius = 0;
-	var recursionCount = 0;
-
 	if (totalDataSeries <= 0)
 		return;
 
@@ -454,7 +450,9 @@ export default function (plotUnit) {
 	function rePositionLabels(dataPointIndex, offset) {
 		offset = offset || 0;
 
-		var actualOffset = 0;
+    var actualOffset = 0;
+    var indexLabelRadius = outerRadius * indexLabelRadiusToRadiusRatio;
+    var recursionCount = 0;
 
 		//var labelYMin = 2;
 		//var labelYMax = ctx.canvas.height - 2;
@@ -725,7 +723,7 @@ export default function (plotUnit) {
 
 			if (dataSeries.indexLabelPlacement !== "inside") {
 
-				indexLabelRadius = outerRadius * indexLabelRadiusToRadiusRatio;
+				var indexLabelRadius = outerRadius * indexLabelRadiusToRadiusRatio;
 
 				for (i = 0; i < dataPoints.length; i++) {
 					var dataPointEO = dataPointEOs[i];

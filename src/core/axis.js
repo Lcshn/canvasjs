@@ -38,6 +38,8 @@ function Axis(chart, options, type, position) {
 		}
 	}
 
+
+
 	if (typeof (this._options.titleFontSize) === "undefined") {
 
 		this.titleFontSize = this.chart.getAutoFontSize(this.titleFontSize);
@@ -217,7 +219,7 @@ Axis.prototype.createLabels = function () {
 				y: 0,
 				//maxWidth: this.maxHeight,
 				//maxHeight: this.labelFontSize,
-				maxWidth: this.type === 'axisX' && this._position === 'bottom' ? (this.maxWidth / (this.dataInfo.max + 1) - 15) : labelMaxWidth,
+				maxWidth: labelMaxWidth,
 				maxHeight: labelMaxHeight,
 				angle: this.labelAngle,
 				text: this.prefix + text + this.suffix,
@@ -297,6 +299,8 @@ Axis.prototype.createLabelsAndCalculateWidth = function () {
 		}
 	}
 
+
+
 	var titleHeight = this.title ? getFontHeightInPixels(this.titleFontFamily, this.titleFontSize, this.titleFontWeight) + 2 : 0;
 
 	var axisWidth = titleHeight + maxLabelEffectiveWidth + this.tickLength + 5;
@@ -323,7 +327,6 @@ Axis.prototype.createLabelsAndCalculateHeight = function () {
 			textBlock = this._labels[i].textBlock;
 
 			var size = textBlock.measureText();
-			
 			//var diagonal = Math.sqrt(Math.pow(size.height, 2) + Math.pow(size.width, 2));
 
 			//var hypotenuse = Math.sqrt(Math.pow(size.height / 2, 2) + Math.pow(size.width, 2));
@@ -1669,7 +1672,7 @@ Axis.prototype.calculateAxisParameters = function () {
 
 			if (this._options && typeof (this._options.interval) === "undefined") {
 				this.interval = Axis.getNiceNumber((this.viewportMaximum - this.viewportMinimum) / (noTicks - 1), true);
-			}x
+			}
 		}
 	}
 
