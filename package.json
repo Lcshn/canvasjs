@@ -2,7 +2,7 @@
   "name": "canvasjs",
   "version": "1.8.3",
   "description": "CanvasJS charting library",
-  "main": "src/main/index.js",
+  "main": "dist/canvasjs.js",
   "scripts": {
     "build": "browserify ./src/main/index.js -d --s 'CanvasJS' > dist/canvasjs.js",
     "postbuild": "uglifyjs --compress --mangle -- dist/canvasjs.js > dist/canvasjs.min.js",
