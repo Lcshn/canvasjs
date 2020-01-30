@@ -5,7 +5,7 @@
   "main": "src/main/index.js",
   "scripts": {
     "build": "browserify ./src/main/index.js -d --s 'CanvasJS' > dist/canvasjs.js",
-    "postbuild": "node_modules/uglify-js/bin/uglifyjs --compress --mangle -- dist/canvasjs.js > dist/canvasjs.min.js",
+    "postbuild": "uglifyjs --compress --mangle -- dist/canvasjs.js > dist/canvasjs.min.js",
     "docs": "rm -rf docs/out/$npm_package_version && jsdoc src --configure jsdoc.conf",
     "plato": "babel -d es5 src && plato -r -d docs/plato -t 'CanvasJS' es5 && rm -rf es5",
     "lint": "eslint --ext .js src",
@@ -16,7 +16,9 @@
   },
   "repository": "https://github.com/Tsur/canvasjs.git",
   "license": "CC",
-  "dependencies": {},
+  "dependencies": {
+    "@babel/polyfill": "^7.8.3"
+  },
   "devDependencies": {
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-stage-1": "^6.1.18",
